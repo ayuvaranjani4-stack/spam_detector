@@ -1,7 +1,8 @@
 import gradio as gr
 import joblib
 import string
-import nltk
+import nltk 
+import os
 from nltk.corpus import stopwords
 
 nltk.download("stopwords")
@@ -24,4 +25,7 @@ gr.Interface(
     inputs=gr.Textbox(label="Enter SMS message"),
     outputs=gr.Textbox(label="Result"),
     title="SMS Spam Detector"
-).launch()
+).launch(
+    server_name="0.0.0.0",
+    server_port=int(os.environ.get("PORT",7860))
+)
